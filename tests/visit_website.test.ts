@@ -2,7 +2,7 @@ import {chromium, test} from "@playwright/test";
 
 test('Open Disney Website', async () =>{
     const browser = await chromium.launch({
-        headless:false
+        headless:true
     })
     const context = await browser.newContext()
     const page = await context.newPage() 
