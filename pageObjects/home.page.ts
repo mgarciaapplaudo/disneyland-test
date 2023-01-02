@@ -27,23 +27,17 @@ export default class HomePage{
 
     public async clickSignin(){
         const ele = await this.eleSigninBtn()
-        if (ele != null){
-            await ele?.click()
-        }else throw new Error("Element Not Found!")
+        await ele?.click()
     }
 
     public async clickFirstLanguage(){
         const ele = await this.eleLanguagesLink()
-        if (ele != null){
-            await ele[0]?.click()
-        }else throw new Error("Element Not Found!")
+        await ele[0]?.click()
     }
 
     public async clickContinue(){
         const ele = await this.eleContinueBtn()
-        if (ele != null){
-            await ele?.click()
-        }else throw new Error("Element Not Found!")
+        await ele?.click()     
     }
     
     public async assertTitle(){
