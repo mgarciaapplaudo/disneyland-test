@@ -18,11 +18,6 @@ export default class HomePage{
     public async clickLanguage(){
         const ele = await this.eleLanguage()
         await ele?.click()
-        /*
-        if (ele != null){
-            await ele?.click()
-        }else throw new Error("Element Not Found!")
-        */
     }
 
     public async clickSignin(){
@@ -43,6 +38,5 @@ export default class HomePage{
     public async assertTitle(){
         const ele = await this.eleHeaderText()
         expect(ele).toHaveText("Celebrate")
-        //thisline
     }
 }
