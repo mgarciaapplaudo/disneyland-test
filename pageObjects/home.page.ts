@@ -12,14 +12,13 @@ export default class HomePage{
     eleSigninBtn = async () => await this.page.$("//a[@class='syndicated-profile__container__link signIn']")
     eleLanguagesLink = async () => await this.page.$$("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a")
     eleContinueBtn = async () => await this.page.$("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
-    eleHeader1text = async () => await this.page.$("//h1[contains(@class,'heading title desktop ng-binding')]//child::strong")
-    eleHeaderText = async () => await this.page.getByText('Celebrate Now through March 31, 2023')
+    eleHeaderText = async () => this.page.getByText('Celebrate Now through March 31, 2023')
 
     //Actions:
     public async clickLanguage(){
         const ele = await this.eleLanguage()
-        if (ele != null){
-            await ele?.click({timeout: 30000})
+        if (ele != null && await ele.isVisible()){
+            await ele?.click({timeout: 60000})
         }else throw new Error("Element Not Found!")
     }
 
