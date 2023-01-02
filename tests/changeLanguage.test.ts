@@ -17,10 +17,10 @@ test.beforeAll(async() =>{
     context = await browser.newContext()
     page = await context.newPage()
     await page.goto(Urls.home)
+    homePage = new HomePage(page)
 })
 
 test("change Language", async() => {
-    homePage = new HomePage(page)
     await homePage.clickLanguage()  
     await homePage.clickFirstLanguage()
     await homePage.clickContinue()

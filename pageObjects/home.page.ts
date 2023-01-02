@@ -2,7 +2,7 @@ import {Page, expect} from "@playwright/test"
 
 export default class HomePage{
     private page: Page
-
+    
     constructor(page: Page){
         this.page = page
     }
@@ -13,11 +13,13 @@ export default class HomePage{
     eleLanguagesLink = async () => await this.page.$$("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a")
     eleContinueBtn = async () => await this.page.$("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
     eleHeader1text = async () => await this.page.$("//h1[contains(@class,'heading title desktop ng-binding')]//child::strong")
+    eleHeaderText = async () => await this.page.getByText('Celebrate Now through March 31, 2023')
 
     //Actions:
     public async clickLanguage(){
         const ele = await this.eleLanguage()
         if (ele != null){
+            //await ele?.click({timeout: 30000})
             await ele?.click()
         }else throw new Error("Element Not Found!")
     }
@@ -44,10 +46,9 @@ export default class HomePage{
     }
 
     public async assertTitle(){
-        const ele = await this.eleHeader1text()
+        const ele = await this.eleHeaderText()
         if (ele != null){
-            await this.page.pause()
-           expect(ele)
+           expect(ele).toHaveText("Celebrate")
         }else throw new Error("Element Not Found!")
     }
 }
