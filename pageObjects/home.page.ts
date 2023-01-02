@@ -49,5 +49,6 @@ export default class HomePage{
     public async assertTitle(){
         const ele = await this.eleHeaderText()
         expect(ele).toHaveText("Celebrate")
+        //thisline
     }
 }
