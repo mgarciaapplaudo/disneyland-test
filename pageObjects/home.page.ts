@@ -48,8 +48,6 @@ export default class HomePage{
 
     public async assertTitle(){
         const ele = await this.eleHeaderText()
-        if (ele != null){
-           expect(ele).toHaveText("Celebrate")
-        }else throw new Error("Element Not Found!")
+        expect(ele).toHaveText("Celebrate")
     }
 }
