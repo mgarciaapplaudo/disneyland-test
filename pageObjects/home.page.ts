@@ -18,7 +18,7 @@ export default class HomePage{
     public async clickLanguage(){
         const ele = await this.eleLanguage()
         if (ele != null && await ele.isVisible()){
-            await ele?.click({timeout: 60000})
+            await ele?.click({timeout: 120000})
         }else throw new Error("Element Not Found!")
     }
 
