@@ -45,9 +45,10 @@ export default class HomePage{
             await ele?.click()
         }else throw new Error("Element Not Found!")
     }
-
+    /*
     public async assertTitle(){
         const ele = await this.eleHeaderText()
         expect(ele).toHaveText("Celebrate")
     }
+    */
 }
