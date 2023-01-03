@@ -98,10 +98,19 @@ const config: PlaywrightTestConfig = {
   // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
+  //webServer: {
   //   command: 'npm run start',
   //   port: 3000,
-  // },
+  //},
+  webServer: {
+    command: 'pnpm run build && pnpm run start --filter="./example"',
+    reuseExistingServer: !process.env.CI,
+    url: 'http://localhost:3000',
+    env: {
+      NODE_ENV: 'test',
+      USE_BABEL_PLUGIN_ISTANBUL: '1',
+    },
+  },
 };
 
 export default config;
