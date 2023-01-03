@@ -1,4 +1,4 @@
-import {test, expect, Browser,firefox,Page,BrowserContext} from "@playwright/test"
+import {test, expect, Browser,firefox,Page,BrowserContext, chromium} from "@playwright/test"
 import Urls from "../utils/urls"
 import HomePage from "../pageObjects/home.page"
 import * as data from "../utils/credentials.json"
@@ -12,8 +12,8 @@ let context: BrowserContext
 let page: Page
 
 test.beforeAll(async() =>{
-    browser = await firefox.launch({
-        headless: true,
+    browser = await chromium.launch({
+        headless: false,
     })
     context = await browser.newContext()
     page = await context.newPage()
@@ -29,10 +29,12 @@ test("Sign in", async() => {
         await homePage.clickContinue()
         await homePage.assertTitle()
     })
+    
     await test.step("SignIn", async()=>{
         await homePage.clickSignIn()
         await homePage.logIn(data.email, data.pass)
         await homePage.clickSignIn2()
         await homePage.assertWelcome()
     })
+    
 })

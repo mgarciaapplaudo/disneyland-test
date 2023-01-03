@@ -8,58 +8,94 @@ export default class HomePage{
     }
 
     //Locators:
-    eleLanguage = async () => await this.page.$("//button[contains(@class,'syndicated-language-selector__open')]")
-    eleLanguagesLink = async () => await this.page.$$("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a")
-    eleContinueBtn = async () => await this.page.$("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
-    eleHeaderText = async () => this.page.getByText('Celebrate Now through March 31, 2023')
-    eleSignInBtn = async () => await this.page.$("//a[contains(text(),'Sign In or Create Account')]")[0]
-    eleEmailInput = async () => await this.page.$("//input[contains(@placeholder,'Username or Email Address')]")
-    elePassInput = async () => await this.page.$("//input[contains(@placeholder,'Password')]")
-    eleSignInBtn2 = async () => await this.page.$("//button[contains(@class,'btn btn-primary btn-submit ng-isolate-scope')]") 
-    eleWelcomeLink = async () => this.page.getByText("Welcome")
+    public get eleLanguage(){
+        const ele = this.page.locator("//button[contains(@class,'syndicated-language-selector__open')]")
+        return ele
+    }
+
+    public get eleContinueBtn(){
+        const ele = this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
+        return ele
+    }
+
+    public get eleLanguagesLink(){
+        const ele = this.page.locator("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a")
+        return ele
+    }
+
+    public get eleHeaderText(){
+        const ele = this.page.getByText('Celebrate Now through March 31, 2023')
+        return ele
+    }
+
+    public get eleSignInBtn(){
+        const ele = this.page.locator("//a[contains(text(),'Sign In or Create Account')]")
+        return ele
+    }
+
+    public get eleEmailInput(){
+        const ele = this.page.frameLocator("#disneyid-iframe").locator("//input[contains(@placeholder,'Username or Email Address')]")
+        return ele
+    }
+
+    public get elePassInput(){
+        const ele =  this.page.frameLocator("#disneyid-iframe").locator("//input[contains(@placeholder,'Password')]")
+        return ele 
+    }
+    
+    public get eleSignInBtn2(){
+        const ele = this.page.frameLocator("#disneyid-iframe").locator("//button[contains(@class,'btn btn-primary btn-submit ng-isolate-scope')]")
+        return ele
+    }
+
+    public get eleWelcomeLink(){
+        const ele = this.page.getByText("Welcome")
+        return ele
+    }
+
     //Actions:
 
     //Language:
     public async clickLanguage(){
-        const ele = await this.eleLanguage()
-        await ele?.click()
+        let ele = this.eleLanguage
+        await ele.click()
     }
 
     public async clickFirstLanguage(){
-        const ele = await this.eleLanguagesLink()
-        await ele[0]?.click()
+        const ele = this.eleLanguagesLink
+        await ele.nth(0).click()
     }
 
     public async clickContinue(){
-        const ele = await this.eleContinueBtn()
-        await ele?.click()     
+        const ele = this.eleContinueBtn
+        await ele.nth(0).click()    
     }
     
     public async assertTitle(){
-        const ele = await this.eleHeaderText()
+        const ele = this.eleHeaderText
         expect(ele).toHaveText("Celebrate Now through March 31,2023")
     }
 
     //SignIn:
     public async clickSignIn(){
-        const ele = await this.eleSignInBtn()
-        await ele?.click()
+        const ele = this.eleSignInBtn
+        await ele.nth(0).click()
     }
 
     public async logIn(email: string, pass: string){
-        const Email= await this.eleEmailInput()
-        const Pass = await this.elePassInput()
-        await Email?.fill(email)
-        await Pass?.fill(pass)
+        const Email= this.eleEmailInput
+        const Pass = this.elePassInput
+        await Email.fill(email)
+        await Pass.type(pass)
     }
 
     public async clickSignIn2(){
-        const ele = await this.eleSignInBtn2()
+        const ele = this.eleSignInBtn2
         await ele?.click()
     }
 
     public async assertWelcome(){
-        const ele = await this.eleWelcomeLink()
+        const ele = this.eleWelcomeLink
         expect(ele).toHaveText("Quality!")
     }
 }
