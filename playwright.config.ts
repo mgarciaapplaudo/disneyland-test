@@ -103,7 +103,7 @@ const config: PlaywrightTestConfig = {
   //   port: 3000,
   //},
   webServer: {
-    command: 'pnpm run build && pnpm run start --filter="./example"',
+    command: 'npm run start',
     reuseExistingServer: !process.env.CI,
     url: 'http://localhost:3000',
     env: {
