@@ -1,6 +1,6 @@
 import {Page, expect} from "@playwright/test"
 
-export default class standardParkTicketsPage{
+export default class calendarPage{
     private page: Page
     
     constructor(page: Page){
@@ -13,8 +13,8 @@ export default class standardParkTicketsPage{
         return ele
     }
 
-    public get eleViewCalendar(){
-        const ele = this.page.getByText("View Calendar")
+    public get eleNumber(){
+        const ele = this.page.getByText('8')
         return ele
     }
 
@@ -24,8 +24,8 @@ export default class standardParkTicketsPage{
         expect(ele).toBeVisible()
     }
 
-    public async viewCalendar(){
-        let ele = this.eleViewCalendar
-        ele.click()
+    public async assertDate(){
+        let ele = this.eleNumber
+        expect(ele).toBeVisible()
     }
 }

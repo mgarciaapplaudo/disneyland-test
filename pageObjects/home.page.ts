@@ -96,7 +96,7 @@ export default class HomePage{
         const Email= this.eleEmailInput
         const Pass = this.elePassInput
         await Email.fill(email)
-        await Pass.type(pass)
+        await Pass.fill(pass)
     }
 
     public async clickSignIn2(){
