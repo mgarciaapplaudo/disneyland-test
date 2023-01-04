@@ -53,6 +53,16 @@ export default class HomePage{
         return ele
     }
 
+    public get eleParksAndTickets(){
+        const ele = this.page.locator("//div[contains(text(),'Parks & Tickets')]")
+        return ele
+    }
+
+    public get eleMagicKingdomPark(){
+        const ele = this.page.locator("//div[contains(text(),'Magic Kingdom')]")
+        return ele
+    }
+
     //Actions:
 
     //Language:
@@ -97,5 +107,16 @@ export default class HomePage{
     public async assertWelcome(){
         const ele = this.eleWelcomeLink
         expect(ele).toHaveText("Quality!")
+    }
+
+    //Navigate to Magic Kingdom Park:
+    public async mouseOver(){
+        const ele = this.eleParksAndTickets
+        await ele.hover()
+    }
+
+    public async clickMagicKingdom(){
+        const ele = this.eleMagicKingdomPark
+        await ele.nth(0).click()
     }
 }

@@ -36,5 +36,4 @@ test("Sign in", async() => {
         await homePage.clickSignIn2()
         await homePage.assertWelcome()
     })
-    
 })
