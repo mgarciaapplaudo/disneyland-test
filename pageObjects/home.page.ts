@@ -59,7 +59,7 @@ export default class HomePage{
     }
 
     public get eleMagicKingdomPark(){
-        const ele = this.page.locator("//div[contains(text(),'Magic Kingdom')]")
+        const ele = this.page.locator("//div[contains(text(),'Magic Kingdom')]").nth(0)
         return ele
     }
 
@@ -117,6 +117,8 @@ export default class HomePage{
 
     public async clickMagicKingdom(){
         const ele = this.eleMagicKingdomPark
-        await ele.nth(0).click()
+        await this.page.waitForSelector("//div[@class = 'syndicated-flyout syndicated-flyout--parksAndTickets']")
+        //await (await this.page.waitForSelector("//div[contains(text(),'Magic Kingdom')]")).click({force: true})
+        await ele.nth(0).click({force: true})
     }
 }

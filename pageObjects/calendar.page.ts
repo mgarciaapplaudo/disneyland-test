@@ -13,8 +13,8 @@ export default class calendarPage{
         return ele
     }
 
-    public get eleNumber(){
-        const ele = this.page.getByText('8')
+    public get eleDayButton(){
+        const ele = this.page.getByRole('button')
         return ele
     }
 
@@ -24,8 +24,7 @@ export default class calendarPage{
         expect(ele).toBeVisible()
     }
 
-    public async assertDate(){
-        let ele = this.eleNumber
-        expect(ele).toBeVisible()
+    public async searchAvailableDate(){
+   
     }
 }

@@ -9,7 +9,7 @@ export default class standardParkTicketsPage{
 
     //Locators:
     public get eleText(){
-        const ele = this.page.getByText("Standard Theme Park Ticket")
+        const ele = this.page.getByText("Standard Theme Park Ticket").nth(0)
         return ele
     }
 

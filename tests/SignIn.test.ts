@@ -13,7 +13,7 @@ let page: Page
 
 test.beforeAll(async() =>{
     browser = await chromium.launch({
-        headless: true,
+        headless: false,
     })
     context = await browser.newContext()
     page = await context.newPage()
@@ -35,5 +35,10 @@ test("Sign in", async() => {
         await homePage.logIn(data.email, data.pass)
         await homePage.clickSignIn2()
         await homePage.assertWelcome()
+
+    })
+
+    await test.step("store auth state",async ()=>{
+        await context.storageState({path: "auth.json"})
     })
 })
