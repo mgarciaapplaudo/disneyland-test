@@ -23,32 +23,17 @@ test.beforeAll(async () => {
     browser = await chromium.launch({
         headless: false,
     })
-    const context = await browser.newContext({storageState: './auth.json'})
-    const page = await context.newPage()
+    context = await browser.newContext({storageState: "./auth.json"})
+    page = await context.newPage()
     await page.goto(Urls.home)
     homePage = new HomePage(page)
 })
 
 test("Purchase Tickets for Magic Kingdom", async() => {
-    /*
-    await test.step("Change Language", async() =>{
-        await homePage.clickLanguage()  
-        await homePage.clickFirstLanguage()
-        await homePage.clickContinue()
-        await homePage.assertTitle()
-    })
-    
-    await test.step("Sign In", async()=>{
-        await homePage.clickSignIn()
-        await homePage.logIn(data.email, data.pass)
-        await homePage.clickSignIn2()
-        await homePage.assertWelcome()
-    })
-    */
-
     await test.step("Navigate to Magic Kingdom Park", async()=>{
         await homePage.mouseOver()
         await homePage.clickMagicKingdom()
+        //await page.waitForTimeout(5000)
         expect(page).toHaveURL("https://disneyworld.disney.go.com/destinations/magic-kingdom/")
     })
 
