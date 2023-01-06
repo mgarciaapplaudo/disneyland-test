@@ -23,8 +23,4 @@ export default class calendarPage{
         let ele = this.eleText
         expect(ele).toBeVisible()
     }
-
-    public async searchAvailableDate(){
-   
-    }
 }

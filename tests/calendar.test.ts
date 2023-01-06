@@ -31,6 +31,4 @@ test.beforeAll(async () => {
 
 test("Calendar", async() => {
     expect(page).toHaveURL("https://disneyworld.disney.go.com/availability-calendar/?segments=tickets,resort&defaultSegment=tickets")
-    await calendarPage.searchAvailableDate()
-    
 })
