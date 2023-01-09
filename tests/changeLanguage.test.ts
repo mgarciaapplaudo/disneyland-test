@@ -17,12 +17,12 @@ test.beforeAll(async() =>{
     context = await browser.newContext()
     page = await context.newPage()
     await page.goto(Urls.home)
+    await page.waitForLoadState('domcontentloaded')
     homePage = new HomePage(page)
 })
 
 test.describe("user can change language",async()=>{
     test("change Language", async() => {
-        await page.waitForLoadState()
         await homePage.clickLanguage()  
         await homePage.clickFirstLanguage()
         await homePage.clickContinue()
