@@ -22,6 +22,7 @@ test.beforeAll(async() =>{
 
 test.describe("user can change language",async()=>{
     test("change Language", async() => {
+        await page.waitForLoadState()
         await homePage.clickLanguage()  
         await homePage.clickFirstLanguage()
         await homePage.clickContinue()
