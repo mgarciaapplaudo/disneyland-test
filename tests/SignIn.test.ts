@@ -13,7 +13,7 @@ let page: Page
 
 test.beforeAll(async() =>{
     browser = await chromium.launch({
-        headless: true,
+        headless: false,
     })
     context = await browser.newContext()
     page = await context.newPage()
@@ -21,23 +21,25 @@ test.beforeAll(async() =>{
     homePage = new HomePage(page)
 })
 
-test("Sign in", async() => {
-    await test.step("Change Language", async() =>{
-        await page.waitForLoadState()
-        await homePage.clickLanguage()  
-        await homePage.clickFirstLanguage()
-        await homePage.clickContinue()
-        await homePage.assertTitle()
-    })
+test.describe('Create authentication state',async ()=>{
+    test('signin', async()=>{
+        test.step("Change Language", async() =>{
+            await page.waitForLoadState()
+            await homePage.clickLanguage()  
+            await homePage.clickFirstLanguage()
+            await homePage.clickContinue()
+            await homePage.assertTitle()
+        })
     
-    await test.step("SignIn", async()=>{
-        await homePage.clickSignIn()
-        await homePage.logIn(data.email, data.pass)
-        await homePage.clickSignIn2()
-        await homePage.assertWelcome()
-    })
-
-    await test.step("store auth state",async ()=>{
-        await context.storageState({path: "auth.json"})
+        test.step("SignIn", async()=>{
+            await homePage.clickSignIn()
+            await homePage.logIn(data.email, data.pass)
+            await homePage.clickSignIn2()
+            await homePage.assertWelcome()
+        })
+        
+        test.step("store auth state",async ()=>{
+            await context.storageState({path: "auth.json"})
+        })
     })
 })

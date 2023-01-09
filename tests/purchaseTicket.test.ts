@@ -5,7 +5,6 @@ import MagicKingdomPage from "../pageObjects/magicKingdom.page"
 import AdmissionTicketsPage from "../pageObjects/admissionTickets.page"
 import StandardParkTicketsPage from "../pageObjects/standardParkTickets.page"
 import CalendarPage from "../pageObjects/calendar.page"
-import * as data from "../utils/credentials.json"
 
 //Pages:
 let homePage: HomePage
@@ -21,7 +20,7 @@ let page: Page
 
 test.beforeAll(async () => {
     browser = await chromium.launch({
-        headless: true,
+        headless: false,
     })
     context = await browser.newContext({storageState: "./auth.json"})
     page = await context.newPage()
