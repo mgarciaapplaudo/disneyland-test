@@ -20,7 +20,7 @@ let page: Page
 
 test.beforeAll(async () => {
     browser = await chromium.launch({
-        headless: false,
+        headless: true,
     })
     context = await browser.newContext({storageState: "./auth.json"})
     page = await context.newPage()
