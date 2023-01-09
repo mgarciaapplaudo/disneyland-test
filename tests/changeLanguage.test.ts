@@ -20,10 +20,13 @@ test.beforeAll(async() =>{
     homePage = new HomePage(page)
 })
 
-test("change Language", async() => {
-    await homePage.clickLanguage()  
-    await homePage.clickFirstLanguage()
-    await homePage.clickContinue()
-    await homePage.assertTitle()
+test.describe("user can change language",async()=>{
+    test("change Language", async() => {
+        await homePage.clickLanguage()  
+        await homePage.clickFirstLanguage()
+        await homePage.clickContinue()
+        await homePage.assertTitle()
+    })
 })
+
 
