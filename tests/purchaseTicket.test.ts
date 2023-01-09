@@ -20,7 +20,7 @@ let page: Page
 
 test.beforeAll(async () => {
     browser = await chromium.launch({
-        headless: true,
+        headless: false,
     })
     context = await browser.newContext({storageState: "./auth.json"})
     page = await context.newPage()
@@ -50,12 +50,6 @@ test("Purchase Tickets for Magic Kingdom", async() => {
         standardParkTicketsPage = new StandardParkTicketsPage(page)
         await standardParkTicketsPage.assertText()
         await standardParkTicketsPage.viewCalendar()
-    })
-
-    await test.step("Check Calendar Reservation Availability", async()=>{
-        expect(page).toHaveURL("https://disneyworld.disney.go.com/availability-calendar/?segments=tickets,resort&defaultSegment=tickets")
-        calendarPage = new CalendarPage(page)
-        //await calendarPage.searchAvailableDate()
-    })
-    
+        await standardParkTicketsPage.click2Days()
+    })    
 })

@@ -18,6 +18,11 @@ export default class standardParkTicketsPage{
         return ele
     }
 
+    public get eleRadioBtn2(){
+        const ele = this.page.locator("#radio-2")
+        return ele
+    }
+
     //Actions:
     public async assertText(){
         let ele = this.eleText
@@ -28,4 +33,10 @@ export default class standardParkTicketsPage{
         let ele = this.eleViewCalendar
         ele.click()
     }
+
+    public async click2Days(){
+        let ele = this.eleRadioBtn2
+        ele.click()
+        this.page.pause()
+    }    
 }
