@@ -14,7 +14,7 @@ export default class HomePage{
     }
 
     public get eleContinueBtn(){
-        const ele = this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
+        const ele = this.page.$("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
         return ele
     }
 
@@ -49,7 +49,7 @@ export default class HomePage{
     }
 
     public get eleWelcomeLink(){
-        const ele = this.page.getByText("Welcome")
+        const ele = this.page.locator("//a[contains(@class,'syndicated-profile__container__link--guest guestSensitive')]")
         return ele
     }
 
@@ -77,13 +77,13 @@ export default class HomePage{
     }
 
     public async clickContinue(){
-        const ele = this.eleContinueBtn
-        await ele.nth(0).click()    
+        const ele = await this.eleContinueBtn
+        await ele?.click()    
     }
     
     public async assertTitle(){
         const ele = this.eleHeaderText
-        expect(ele).toHaveText("Celebrate Now through March 31,2023")
+        expect(ele).toHaveText("Celebrate Now through March 31, 2023")
     }
 
     //SignIn:
@@ -106,7 +106,7 @@ export default class HomePage{
 
     public async assertWelcome(){
         const ele = this.eleWelcomeLink
-        expect(ele).toHaveText("Quality!")
+        expect(await ele.innerText()).toContain("Welcome, Quality!")
     }
 
     //Navigate to Magic Kingdom Park:
@@ -118,7 +118,6 @@ export default class HomePage{
     public async clickMagicKingdom(){
         const ele = this.eleMagicKingdomPark
         await this.page.waitForSelector("//div[@class = 'syndicated-flyout syndicated-flyout--parksAndTickets']")
-        //await (await this.page.waitForSelector("//div[contains(text(),'Magic Kingdom')]")).click({force: true})
         await ele.nth(0).click({force: true})
     }
 }
