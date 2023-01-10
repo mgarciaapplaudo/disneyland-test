@@ -49,7 +49,7 @@ export default class HomePage{
     }
 
     public get eleWelcomeLink(){
-        const ele = this.page.$("//a[contains(@class,'syndicated-profile__container__link--guest guestSensitive')]")
+        const ele = this.page.locator("//a[contains(@class,'syndicated-profile__container__link--guest guestSensitive')]")
         return ele
     }
 
@@ -106,7 +106,7 @@ export default class HomePage{
 
     public async assertWelcome(){
         const ele = this.eleWelcomeLink
-        expect(await ele).toContain("Welcome, Quality!")
+        expect(await ele.innerText()).toContain("Welcome, Quality!")
     }
 
     //Navigate to Magic Kingdom Park:
