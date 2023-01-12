@@ -7,13 +7,12 @@ import * as data from "../utils/credentials.json"
 let homePage: HomePage
 
 test.describe('Signin Workflow', () =>{
-    test('DIS-T22. user is hable to signin', async ({browser})=>{
+    test('DIS-T22. user is able to signin', async ({browser})=>{
         const context = await browser.newContext()
         const page = await context.newPage()
         await page.goto(Urls.home)
         homePage = new HomePage(page)
         //Change Language:
-        await page.waitForLoadState()
         await homePage.clickLanguage()  
         await homePage.clickFirstLanguage()
         await homePage.clickContinue()
