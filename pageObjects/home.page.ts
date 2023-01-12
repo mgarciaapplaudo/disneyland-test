@@ -13,9 +13,9 @@ export default class HomePage{
         return ele
     }
 
-    public get eleContinueBtn(){
+    async eleContinueBtn(){
         const ele = this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
-        return ele
+        return await ele.click()
     }
 
     public get eleLanguagesLink(){
@@ -78,8 +78,7 @@ export default class HomePage{
     }
 
     public async clickContinue(){
-        const ele = this.eleContinueBtn
-        await ele?.click()    
+        this.eleContinueBtn
     }
     
     public async assertTitle(){
