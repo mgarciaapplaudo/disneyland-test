@@ -8,7 +8,7 @@ export default class HomePage{
     }
 
     //Locators:
-    public get eleLanguage(){
+    public get  eleLanguage(){
         const ele = this.page.locator("//button[contains(@class,'syndicated-language-selector__open')]")
         return ele
     }
@@ -19,7 +19,7 @@ export default class HomePage{
     }
 
     public get eleLanguagesLink(){
-        const ele = this.page.locator("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a")
+        const ele = this.page.locator("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a").first()
         return ele
     }
 
@@ -49,7 +49,7 @@ export default class HomePage{
     }
 
     public get eleWelcomeLink(){
-        const ele = this.page.getByText('Welcome')
+        const ele = this.page.getByText("Welcome, Quality!")
         return ele
     }
 
@@ -73,11 +73,12 @@ export default class HomePage{
 
     public async clickFirstLanguage(){
         const ele = this.eleLanguagesLink
-        await ele.nth(0).click()
+        expect(ele).toBeVisible()
+        await ele.click()
     }
 
     public async clickContinue(){
-        const ele = await this.eleContinueBtn
+        const ele = this.eleContinueBtn
         await ele.click()
     }
     
@@ -89,24 +90,25 @@ export default class HomePage{
     //SignIn:
     public async clickSignIn(){
         const ele = this.eleSignInBtn
+        expect(ele).toBeVisible()
         await ele.click()
     }
 
     public async logIn(email: string, pass: string){
-        const Email= this.eleEmailInput
-        const Pass = this.elePassInput
+        const Email= await this.eleEmailInput
+        const Pass = await this.elePassInput
         await Email.fill(email)
         await Pass.fill(pass)
     }
 
     public async clickSignIn2(){
         const ele = this.eleSignInBtn2
-        await ele.click()
+        await ele?.click()
     }
 
-    async assertWelcome(){
+    public async assertWelcome(){
         const ele = this.eleWelcomeLink
-        console.log(ele)
+        expect(ele)
     }
 
     //Navigate to Magic Kingdom Park:
@@ -117,7 +119,7 @@ export default class HomePage{
 
     public async clickMagicKingdom(){
         const ele = this.eleMagicKingdomPark
-        await this.page.waitForSelector("//div[@class = 'syndicated-flyout syndicated-flyout--parksAndTickets']")
+        //await this.page.waitForSelector("//div[@class = 'syndicated-flyout syndicated-flyout--parksAndTickets']")
         await ele.nth(0).click({force: true})
     }
 }
