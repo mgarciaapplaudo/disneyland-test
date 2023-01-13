@@ -8,8 +8,7 @@ export default class HomePage{
     }
 
     //Locators:
-    
-    public get  eleLanguage(){
+    public get eleLanguage(){
         const ele = this.page.locator("//button[contains(@class,'syndicated-language-selector__open')]")
         return ele
     }
@@ -20,7 +19,7 @@ export default class HomePage{
     }
 
     public get eleLanguagesLink(){
-        const ele = this.page.locator("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a").first()
+        const ele = this.page.locator("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a")
         return ele
     }
 
@@ -50,7 +49,7 @@ export default class HomePage{
     }
 
     public get eleWelcomeLink(){
-        const ele = this.page.getByText("Welcome, Quality!")
+        const ele = this.page.getByText('Welcome')
         return ele
     }
 
@@ -74,12 +73,12 @@ export default class HomePage{
 
     public async clickFirstLanguage(){
         const ele = this.eleLanguagesLink
-        await ele.click()
+        await ele.nth(0).click()
     }
 
     public async clickContinue(){
-        let ele = this.eleContinueBtn
-        await ele.click() 
+        const ele = await this.eleContinueBtn
+        await ele.click()
     }
     
     public async assertTitle(){
@@ -105,9 +104,9 @@ export default class HomePage{
         await ele.click()
     }
 
-    public async assertWelcome(){
+    async assertWelcome(){
         const ele = this.eleWelcomeLink
-        expect(ele)
+        console.log(ele)
     }
 
     //Navigate to Magic Kingdom Park:
@@ -117,8 +116,8 @@ export default class HomePage{
     }
 
     public async clickMagicKingdom(){
-        const ele = this.eleMagicKingdomPark.first()
-        //await this.page.waitForSelector("//div[@class = 'syndicated-flyout syndicated-flyout--parksAndTickets']")
-        await ele.click({force: true})
+        const ele = this.eleMagicKingdomPark
+        await this.page.waitForSelector("//div[@class = 'syndicated-flyout syndicated-flyout--parksAndTickets']")
+        await ele.nth(0).click({force: true})
     }
 }
