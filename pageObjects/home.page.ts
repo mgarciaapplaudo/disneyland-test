@@ -13,10 +13,11 @@ export default class HomePage{
         return ele
     }
 
-    private eleContinueBtn = async () => this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
-    public get clickContinue(){
-        const ele = this.eleContinueBtn
-        return ele
+    private eleContinueBtn = "//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]"
+    
+    public async clickContinue(){
+        const ele = this.page.locator(this.eleContinueBtn)
+        return ele.click()
     }
 
     public get eleLanguagesLink(){
