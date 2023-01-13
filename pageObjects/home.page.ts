@@ -8,24 +8,20 @@ export default class HomePage{
     }
 
     //Locators:
-    eleLanguage = async () => this.page.locator("//button[contains(@class,'syndicated-language-selector__open')]")
-    eleContinueButton = async () => this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
-    eleLanguagesLink = async () => this.page.locator("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a").first()
+    public get  eleLanguage(){
+        const ele = this.page.locator("//button[contains(@class,'syndicated-language-selector__open')]")
+        return ele
+    }
 
-    // public get  eleLanguage(){
-    //     const ele = this.page.locator("//button[contains(@class,'syndicated-language-selector__open')]")
-    //     return ele
-    // }
+    async eleContinueBtn(){
+        const ele = this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
+        return await ele.click()
+    }
 
-    // public get eleLanguagesLink(){
-    //     const ele = this.page.locator("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a").first()
-    //     return ele
-    // }
-
-    // public get eleContinueBtn(){
-    //     const ele = this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
-    //     return ele
-    // }
+    public get eleLanguagesLink(){
+        const ele = this.page.locator("//div[contains(@class,'syndicated-language-selector__container__content')][1]//child::a").first()
+        return ele
+    }
 
     public get eleHeaderText(){
         const ele = this.page.getByText('Celebrate Now through March 31, 2023')
@@ -71,22 +67,18 @@ export default class HomePage{
 
     //Language:
     public async clickLanguage(){
-        //let ele = this.page.locator(this.eleLanguage)
-        let ele = (await this.eleLanguage())
+        let ele = this.eleLanguage
         await ele.click()
     }
 
     public async clickFirstLanguage(){
-        //const ele = this.eleLanguagesLink
-        let ele = (await this.eleLanguagesLink())
+        const ele = this.eleLanguagesLink
         expect(ele).toBeVisible()
         await ele.click()
     }
 
     public async clickContinue(){
-        //const ele = this.eleContinueBtn
-        let ele = (await this.eleContinueButton())
-        await ele.click()
+        this.eleContinueBtn
     }
     
     public async assertTitle(){
