@@ -8,14 +8,15 @@ export default class HomePage{
     }
 
     //Locators:
+    
     public get  eleLanguage(){
         const ele = this.page.locator("//button[contains(@class,'syndicated-language-selector__open')]")
         return ele
     }
 
-    async eleContinueBtn(){
+    public get eleContinueBtn(){
         const ele = this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
-        return await ele.click()
+        return ele
     }
 
     public get eleLanguagesLink(){
@@ -73,12 +74,12 @@ export default class HomePage{
 
     public async clickFirstLanguage(){
         const ele = this.eleLanguagesLink
-        expect(ele).toBeVisible()
         await ele.click()
     }
 
     public async clickContinue(){
-        this.eleContinueBtn
+        let ele = this.eleContinueBtn
+        await ele.click() 
     }
     
     public async assertTitle(){
@@ -89,20 +90,19 @@ export default class HomePage{
     //SignIn:
     public async clickSignIn(){
         const ele = this.eleSignInBtn
-        expect(ele).toBeVisible()
         await ele.click()
     }
 
     public async logIn(email: string, pass: string){
-        const Email= await this.eleEmailInput
-        const Pass = await this.elePassInput
+        const Email= this.eleEmailInput
+        const Pass = this.elePassInput
         await Email.fill(email)
         await Pass.fill(pass)
     }
 
     public async clickSignIn2(){
         const ele = this.eleSignInBtn2
-        await ele?.click()
+        await ele.click()
     }
 
     public async assertWelcome(){
@@ -117,8 +117,8 @@ export default class HomePage{
     }
 
     public async clickMagicKingdom(){
-        const ele = this.eleMagicKingdomPark
+        const ele = this.eleMagicKingdomPark.first()
         //await this.page.waitForSelector("//div[@class = 'syndicated-flyout syndicated-flyout--parksAndTickets']")
-        await ele.nth(0).click({force: true})
+        await ele.click({force: true})
     }
 }
