@@ -13,8 +13,9 @@ export default class HomePage{
         return ele
     }
 
-    public get eleContinueBtn(){
-        const ele = this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
+    private eleContinueBtn = async () => this.page.locator("//a[contains(@class,' syndicated-button syndicated-button--wdw syndicated-button--primary syndicated-button--link')]")
+    public get clickContinue(){
+        const ele = this.eleContinueBtn
         return ele
     }
 
@@ -77,10 +78,10 @@ export default class HomePage{
         await ele.click()
     }
 
-    public async clickContinue(){
-        const ele = this.eleContinueBtn
-        await ele.click()
-    }
+    // public async clickContinue(){
+    //     const ele = this.eleContinueBtn
+    //     await ele.click()
+    // }
     
     public async assertTitle(){
         const ele = this.eleHeaderText
